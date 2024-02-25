@@ -96,6 +96,26 @@ END CATCH
 
 
 
+-- Specify the user you want to check
+DECLARE @userName NVARCHAR(100) = 'YourUserName'
+
+-- Check if the user exists in the current database
+IF EXISTS (SELECT 1 FROM sys.database_principals WHERE name = @userName AND type_desc = 'SQL_USER')
+BEGIN
+    -- Check BULK INSERT permission for the user in the current database
+    IF EXISTS (SELECT 1 FROM sys.database_permissions WHERE grantee_principal_id = DATABASE_PRINCIPAL_ID(@userName) AND type = 'BULK INSERT')
+    BEGIN
+        PRINT 'The user ' + @userName + ' has BULK INSERT permission in the current database.'
+    END
+    ELSE
+    BEGIN
+        PRINT 'The user ' + @userName + ' does not have BULK INSERT permission in the current database.'
+    END
+END
+ELSE
+BEGIN
+    PRINT 'The user ' + @userName + ' does not exist in the current database.'
+END
 
 
 
