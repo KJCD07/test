@@ -50,3 +50,48 @@ class Program
 
 }
 
+
+
+DECLARE @rowdelimi VARCHAR(MAX) = CHAR(10)
+DECLARE @bulkload NVARCHAR(MAX)
+DECLARE @file NVARCHAR(MAX) = 'D:\OneDrive\Pictures\Test.txt'
+
+SET @bulkload = 'BULK INSERT [dbo].[t] FROM ''' + @file + ''' WITH (ROWTERMINATOR = ''' + @rowdelimi + ''')'
+
+EXEC sp_executesql @bulkload
+
+
+
+
+
+
+
+DECLARE @rowdelimi VARCHAR(MAX) = CHAR(10)
+DECLARE @bulkload NVARCHAR(MAX)
+DECLARE @file NVARCHAR(MAX) = 'D:\OneDrive\Pictures\Test.txt'
+
+SET @bulkload = 'BULK INSERT [dbo].[t] FROM ''' + @file + ''' WITH (ROWTERMINATOR = ''' + @rowdelimi + ''')'
+
+EXEC sp_executesql @bulkload
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
